@@ -2,15 +2,20 @@
 
 @section('contente')
 <h1>{{tittle}}</h1>
-<div class="alert alert-success" role="alert">
-    A simple success alert—check it out!
-  </div>
+  @if(old('notification'))
+    <div class="alert alert-success" role="alert">
+        {{old('notification')}}
+    </div>
+  @endif
 
-  <div class="list-group">
+  <ul class="list-group">
     @each(item in tasks)
-        <a href="#" class="list-group-item list-group-item-action">{{item.body}}</a>
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        <a href="/task/{{ item.id }}" class="list-group-item list-group-item-action">{{item.tittle}}</a>
+        <span class="badge badge-primary badge-pill"><a href="/update/{{ item.id }}" class="btn btn-primary">Edit</a></span>
+      </li>
     @endeach
-  </div>
+  </ul>
 
   
 @endsection

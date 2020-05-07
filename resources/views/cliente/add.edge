@@ -3,19 +3,19 @@
 @section('contente')
   <h1 class="mb-3">New task</h1>
   <form action="{{route('/add')}}" method="post">
+    {{ csrfField() }}
     <div class="mb-3">
         <label for="">Title</label>
-        <input type="text" class="form-control is-invalid" name="tittle" placeholder="You tittle" value="">
-        <div class="invalid-feedback">
-            Error!
-        </div>
+        <input type="text" class="form-control {{hasErrorFor('tittle') ? 'is-invalid': ''}}" name="tittle" placeholder="You tittle" value="">
+
+      {{elIf('<div class="invalid-feedback">$self!</div>', getErrorFor('tittle'), hasErrorFor('tittle'))}}
+
     </div>
     <div class="mb-3">
         <label for="">Body</label>
-        <textarea name="body" class="form-control is-invalid" placeholder="You body"></textarea>
-        <div class="invalid-feedback">
-            Error!
-        </div>
+        <textarea name="body" class="form-control {{hasErrorFor('body') ? 'is-invalid': ''}}" placeholder="You body"></textarea>
+        {{elIf('<div class="invalid-feedback">$self!</div>', getErrorFor('body'), hasErrorFor('body'))}}
+
     </div>
 
     <button type="submit" class="btn btn-primary">New Task</button>

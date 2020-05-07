@@ -1,0 +1,17 @@
+@layout('shared/main')
+@section('contente')
+  <div class="jumbotron">
+
+      <h1>{{task.tittle}}</h1>
+
+      <hr class="my-4"/>
+ 
+        <div class="form-group">
+            <h4 class="my-5">{{task.body}}</h4>
+        </div>
+   
+    <a href="/tasks" class="btn btn-primary btn-lg">Go back</a>
+    <a href="/remove/{{ task.id }}" class="btn btn-danger btn-lg">Delete Task</a>
+
+  </div>
+@endsection

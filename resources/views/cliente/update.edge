@@ -1,0 +1,23 @@
+@layout('shared/main')
+
+@section('contente')
+<h1 class="mb-3">Update task</h1>
+<form action='/atualizar/{{task.id}}' method="post">
+  {{ csrfField() }}
+  <div class="mb-3">
+      <label for="">Title</label>
+      <input type="text" class="form-control {{hasErrorFor('tittle') ? 'is-invalid': ''}}" name="tittle" placeholder="You tittle" value="{{task.tittle}}">
+
+    {{elIf('<div class="invalid-feedback">$self!</div>', getErrorFor('tittle'), hasErrorFor('tittle'))}}
+
+  </div>
+  <div class="mb-3">
+      <label for="">Body</label>
+      <textarea name="body" class="form-control {{hasErrorFor('body') ? 'is-invalid': ''}}" placeholder="You body">{{task.body}}</textarea>
+      {{elIf('<div class="invalid-feedback">$self!</div>', getErrorFor('body'), hasErrorFor('body'))}}
+
+  </div>
+
+  <button type="submit" class="btn btn-primary">Update Task</button>
+</form>
+@endsection
